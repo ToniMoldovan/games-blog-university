@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="920c2484-4b8e-461f-aca4-ccadae3349d3" name="davos.science.upm.ro/~2022.moldovan.akbar.antonio" url="https://davos.science.upm.ro/~2022.moldovan.akbar.antonio/">
+        <fileTransfer rootFolder="/home/stud/2022/tehweb/moldovan.akbar.antonio/public_html" accessType="SFTP" host="davos.umfst.ro" port="22" sshConfigId="d127073a-9d34-4934-8353-bd7317629b5d" sshConfig="2022.moldovan.akbar.antonio@davos.umfst.ro:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

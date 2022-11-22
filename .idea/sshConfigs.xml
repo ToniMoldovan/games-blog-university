@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="davos.umfst.ro" id="d127073a-9d34-4934-8353-bd7317629b5d" port="22" nameFormat="DESCRIPTIVE" username="2022.moldovan.akbar.antonio" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>
