@@ -1,26 +1,42 @@
 <?php
-include_once 'config.php';
-global $ROOT_PATH;
+session_start();
+require 'config.php';
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <?php include 'include/components/head.php';?>
     <title>Games Blog</title>
 </head>
 
 <body>
 
-<?php include $ROOT_PATH . 'include/components/navbar.php'; ?>
+<?php include 'include/components/navbar.php'; ?>
 
-<div id="test">
-    <p>hello</p>
-</div>
+<?php
 
-<?php include $ROOT_PATH . 'include/components/footer.php'; ?>
+switch ($_GET['page']){
+    case '':
+    case 'home':
+        include 'views/homepage.php';
+        break;
+
+    case 'register':
+        include 'views/auth/register.php';
+        break;
+
+    case 'login':
+        include 'views/auth/login.php';
+        break;
+
+    default:
+        echo '<h1>404 ERROR</h1>';
+        break;
+}
+
+?>
+
+<?php include 'include/components/footer.php'; ?>
 </body>
 </html>
