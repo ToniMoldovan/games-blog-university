@@ -1,0 +1,2 @@
+RewriteEngine on
+ErrorDocument 404   https://davos.science.upm.ro/~2022.moldovan.akbar.antonio/views/404.php
