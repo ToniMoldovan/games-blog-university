@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'config.php';
+include 'config.php';
 ?>
 
 <!doctype html>
@@ -16,7 +15,8 @@ require 'config.php';
 
 <?php
 
-switch ($_GET['page']){
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+switch ($page){
     case '':
     case 'home':
         include 'views/homepage.php';
