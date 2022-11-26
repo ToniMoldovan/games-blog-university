@@ -64,7 +64,8 @@ body, * {
 /*#region PageHeader*/
 .header {
     background-color: rgba(0, 0, 0, 0.76);
-    background-image: url("../img/header_bg.jpg");
+    background-image: url("../img/header_bg_2.jpg");
+    background-position: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
