@@ -87,70 +87,45 @@ body, * {
 /*#endregion MainContainer*/
 
 /*#region RegisterForm*/
-.form-box{
-    background:white;
-    width:300px;
-    border-radius:6px;
-    margin: 0 auto 0 auto;
-    padding:0px 0px 70px 0px;
+#submitBtn {
+    background-color: var(--accent-color);
+    border: none;
+    color: rgb(255 255 255);
+    font-weight: 600;
+    font-size: 22px;
+    text-transform: uppercase;
 }
 
-.email{
-    background:#ecf0f1;
-    border: #ccc 1px solid;
-    border-bottom: #ccc 2px solid;
-    padding: 8px;
-    width:100%;
-    color:#AAAAAA;
-    margin-top:10px;
-    font-size:1em;
-    border-radius:4px;
+#submitBtn:hover {
+    background-color: var(--accent-light-color);
+    transition: 0.3s ease-in-out;
 }
 
-.password{
-    border-radius:4px;
-    background:#ecf0f1;
-    border: #ccc 1px solid;
-    padding: 8px;
-    width:100%;
-    font-size:1em;
-}
-
-.btn{
-    background:#2ecc71;
-    padding: 10px 15px;
-    color:white;
-    border-radius:4px;
-    border: #27ae60 1px solid;
-
-    margin-top:20px;
-    margin-bottom:20px;
-    float:left;
-    font-weight:800;
-    font-size:0.8em;
-}
-
-.btn:hover{
-    background:#2CC06B;
-}
-
-#btn2{
-    float:left;
-    background:#3498db;
-    width:125px;  padding-top:5px;
-    padding-bottom:5px;
-    color:white;
-    border-radius:4px;
-    border: #2980b9 1px solid;
-
-    margin-top:20px;
-    margin-bottom:20px;
-    margin-left:10px;
-    font-weight:800;
-    font-size:0.8em;
-}
-
-#btn2:hover{
-    background:#3594D2;
-}
 /*#endregion RegisterForm*/
+
+/*#region Media Queries*/
+
+/*#region Mobile*/
+@media (max-width: 575.98px) {
+    .header {
+        height: 18vh;
+    }
+
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .main-container {
+        padding: 64px 16px;
+    }
+
+    #my-nav .navbar-collapse ul.navbar-nav {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+/*#endregion Mobile*/
+
+
+/*#endregion Media Queries*/

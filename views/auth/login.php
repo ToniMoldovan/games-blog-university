@@ -2,25 +2,25 @@
     <h1>Login Now</h1>
 </div>
 <div class="main-container">
-    <form method="POST" action="">
-        <div class="form-box">
-            <h1>Login</h1>
+    <div class="container">
+        <form>
+            <div class="row">
+                <!--Email-->
+                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                    <input name="email" type="email" class="form-control" placeholder="Email">
+                </div>
 
-            <input type="email" name="email" placeholder="Email" class="email" />
+                <!--Password-->
+                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                    <input name="password" type="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
 
-            <input type="password" name="password" placeholder="Password" class="email" />
-
-            <a href="#"><div class="btn">Login now</div></a>
-
-            <!--            <a href="#"><div id="btn2">Sign Up</div></a> -->
-
-            <p style="color: black;font-size: 20px;float: left;">
-                Don't have an account?<br>Register
-                <a style="color: #3594D2; text-decoration: underline; font-weight: 400;" href="index.php?page=register">Here</a>
-            </p>
-
-        </div> <!-- End Box -->
-
-    </form>
-
+            <div class="row">
+                <div class="col-12 ">
+                    <input id="submitBtn" type="submit" name="submit" value="Login" class="btn w-100 mt-lg-4 mt-md-4 mt-2">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
