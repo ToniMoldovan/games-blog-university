@@ -1,44 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /*Colour palette*/
+    --dark-color: #27272a;
+    --grey-color: #9f9ea2;
+    --accent-color: #C34A36; /*For links background*/
+    --accent-light-color: #FF8066; /*For links hover*/
+    --purple-color: #845EC2; /*For underlines and stuff like that*/
+}
+
 body, * {
-    font-family: "Comic Sans MS", sans-serif;
+    font-family: 'Public Sans', sans-serif;
     padding: 0;
     margin: 0;
 }
 
 /*#region Navbar*/
-nav #navbar {
-    display: flex;
+#my-nav {
+    background-color: var(--dark-color);
 }
 
-nav #navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-
-}
-
-nav #navbar ul li {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-nav #navbar ul li a {
-    display: block;
+#my-nav ul li a.nav-link {
     color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
     font-size: 22px;
+    font-weight: 400;
 }
 
-nav #navbar ul li a:hover:not(.active) {
-    background-color: #111;
+#my-nav ul li.nav-item {
+    padding: 0 15px;
 }
+
+#my-nav .custom-toggler .navbar-toggler-icon {
+    background-image: url("../img/svg/menu_hamburger.svg");
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/*Hover link effect START*/
+.hover-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #FFF;
+    transition: width .3s;
+}
+
+.hover-link:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
+/*Hover link effect END*/
+
 /*#endregion Navbar*/
 
 /*#region PageHeader*/
@@ -49,7 +69,7 @@ nav #navbar ul li a:hover:not(.active) {
     flex-direction: row;
     justify-content: center;
     padding-top: 64px;
-    height: 20vh;
+    height: 24vh;
 }
 
 .header h1 {
