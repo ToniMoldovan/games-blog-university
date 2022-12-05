@@ -48,8 +48,13 @@ class DB {
     /*! This is a test method ! */
     public function showTables() {
         $result = $this->connection->query("SELECT * FROM test");
-        foreach (mysqli_fetch_array($result) as $obj => $key) {
-            echo $key . '<br>';
+        $result = $result->fetch_all(MYSQLI_ASSOC);
+
+        foreach ($result as $row) {
+            echo $row['test1'] . ' ' . $row['test2'] . '<br>';
         }
+//        echo '<pre>';
+//        var_dump($result);
+//        echo '</pre>';
     }
 }

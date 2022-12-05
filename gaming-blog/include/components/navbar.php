@@ -1,5 +1,5 @@
 <nav id="my-nav" class="navbar navbar-expand-lg sticky-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php?page=home">
         <img src="<?php echo ROOT_PATH . 'assets/img/blog_logo_2.png';?>" width="200px" alt="blog_logo">
     </a>
     <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

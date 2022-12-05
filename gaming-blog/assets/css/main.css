@@ -66,6 +66,8 @@ body, * {
     background-color: rgba(0, 0, 0, 0.76);
     background-image: url("../img/header_bg_2.jpg");
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: row;
     justify-content: center;

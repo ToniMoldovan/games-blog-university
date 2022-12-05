@@ -4,3 +4,4 @@
 <link rel="stylesheet" type="text/css" href="<?php echo ROOT_PATH.'assets/css/main.css'?>">
 <link rel="icon" type="icon/png" href="<?php echo ROOT_PATH.'assets/img/icon.png'?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<?php //TODO: add meta image as preview (logo), description & author ?>

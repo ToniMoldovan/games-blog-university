@@ -1,13 +1,14 @@
 <?php
-namespace include\classes;
+
+require_once 'DB.php';
 
 class Post {
-    public $table = 'posts';
+    public string $table = 'posts';
 
-    private $uid;
-    private $title;
-    private $content;
-    private $img;
+    private int $uid;
+    private string $title;
+    private string $content;
+    private string $img;
 
     function __construct($title, $content, $img_url, $user_id) {
         $this->title = $title;
@@ -16,7 +17,12 @@ class Post {
         $this->uid = $user_id;
     }
 
-    function store() {
+    public function showAll() {
+        $query = "SELECT * FROM '".$this->table."'";
+
+    }
+
+    public function store() {
         //TODO: execute query
     }
 

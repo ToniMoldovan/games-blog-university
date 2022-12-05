@@ -6,7 +6,7 @@ require 'config.php';
 <html lang="en">
 <head>
     <?php include 'include/components/head.php';?>
-    <title>Games Blog</title>
+    <title>Gaming Blog</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@ require 'config.php';
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 switch ($page){
     case '':
-    case 'home':
+    case 'home' :
         include 'views/homepage.php';
         break;
 
