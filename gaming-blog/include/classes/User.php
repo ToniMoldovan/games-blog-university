@@ -15,21 +15,54 @@ class User {
         $this->password = $password;
         $this->gender = $gender;
     }
-// aSDSADAS   OR '1' = '1' --
+
     public function showAll() {
         $query = "SELECT * FROM '".$this->table."'";
+    }
+
+    public function emailExists($email) {
+        $query = sprintf("SELECT * FROM users WHERE email='%s'", DB::escape($email));
+        $result = DB::getInstance()->runQuery($query, "SELECT");
+
+        if (count($result) < 1) {
+            //email doesn't exist yet
+            return false;
+        }
+
+        return true;
+    }
+
+    public function nameExists($name) {
+        $query = sprintf("SELECT * FROM users WHERE name='%s'", DB::escape($name));
+        $result = DB::getInstance()->runQuery($query, "SELECT");
+
+        if (count($result) < 1) {
+            //name doesn't exist yet
+            return false;
+        }
+
+        return true;
     }
 
     public function store() {
         $query = sprintf(
             "INSERT INTO users (email, name, password, gender)
-                    VALUES ('%s', '%s', '%s', '%s') ",
+                    VALUES ('%s', '%s', '%s', '%s');",
             DB::escape($this->email),
             DB::escape($this->name),
             DB::escape($this->password),
             DB::escape($this->gender));
 
-        DB::getInstance()->runQuery($query);
+        if ($this->emailExists($this->email)) {
+            //Email already exists
+            echo 'Email already exists';
+        }
+        elseif ($this->nameExists($this->name)) {
+            //Email already exists
+            echo 'Name already exists';
+        }
+        else
+            DB::getInstance()->runQuery($query);
     }
 
 }

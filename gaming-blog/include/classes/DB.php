@@ -39,14 +39,30 @@ class DB {
     /**
      * @param $query
      * @param $type | SELECT, INSERT, UPDATE, DELETE
-     * @return void
      */
-    public function runQuery($query) {
-        if ($this->connection->query($query)) {
-            echo 'Query executed successfully!';
+    public function runQuery($query, $type) {
+        switch ($type) {
+            case 'SELECT':
+                if ($this->connection->query($query)) {
+                    //echo 'Query executed successfully!';
+                    $result = $this->connection->query($query);
+                    return $result->fetch_all(MYSQLI_ASSOC);
+                }
+                else
+                    echo 'Error on query: ' . $this->connection->error;
+                break;
+
+            case 'INSERT':
+                if ($this->connection->query($query)) {
+                    echo 'Query executed successfully!';
+                }
+                else
+                    echo 'Error on query: ' . $this->connection->error;
+                break;
+
+            default:
+                break;
         }
-        else
-            echo 'Error on query: ' . $this->connection->error;
     }
 
     /*! This is a test method ! */
