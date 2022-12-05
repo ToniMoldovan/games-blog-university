@@ -55,14 +55,22 @@ class User {
 
         if ($this->emailExists($this->email)) {
             //Email already exists
-            echo 'Email already exists';
+            //echo 'Email already exists';
+            $_SESSION['register_message_error'] = 'Email already exists! Please choose another one.';
+            header("location:" . ROOT_PATH . 'index.php?page=register');
         }
         elseif ($this->nameExists($this->name)) {
             //Email already exists
-            echo 'Name already exists';
+            //echo 'Name already exists';
+            $_SESSION['register_message_error'] = 'This name already exists! Please choose another one.';
+            header("location:" . ROOT_PATH . 'index.php?page=register');
         }
-        else
-            DB::getInstance()->runQuery($query);
+        else {
+            DB::getInstance()->runQuery($query, 'INSERT');
+            $_SESSION['register_message_success'] = 'Account created successfully!';
+            header("location:" . ROOT_PATH . 'index.php?page=register');
+        }
+
     }
 
 }

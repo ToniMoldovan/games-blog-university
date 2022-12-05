@@ -3,6 +3,23 @@
 </div>
 <div class="main-container">
     <div class="container">
+    <?php
+        if (isset($_SESSION['register_message_error'])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $_SESSION['register_message_error']; ?>
+            </div>
+    <?php
+        unset($_SESSION['register_message_error']); //Clears the register message error
+        endif;
+
+        if (isset($_SESSION['register_message_success'])): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $_SESSION['register_message_success']; ?> You can login <a href="index.php?page=login" class="alert-link">here</a>.
+            </div>
+            <?php
+            unset($_SESSION['register_message_success']); //Clears the register message success
+        endif;
+    ?>
         <form method="POST" action="<?php echo ROOT_PATH.'include/functions/create_new_account.php';?>">
             <div class="row">
                 <!--Email-->
