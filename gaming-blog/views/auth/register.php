@@ -3,7 +3,7 @@
 </div>
 <div class="main-container">
     <div class="container">
-        <form>
+        <form method="POST" action="<?php echo ROOT_PATH.'include/functions/create_new_account.php';?>">
             <div class="row">
                 <!--Email-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
@@ -22,7 +22,7 @@
                     <input name="name" type="text" class="form-control" placeholder="Your nickname (how your friends call you)">
                 </div>
 
-                <!--Password-->
+                <!--Gender-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                     <select name="gender" id="gender" class="form-control">
                         <option value="male" selected>Male</option>

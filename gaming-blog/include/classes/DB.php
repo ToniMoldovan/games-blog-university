@@ -39,10 +39,12 @@ class DB {
      * @param $type | SELECT, INSERT, UPDATE, DELETE
      * @return void
      */
-    public function runQuery($query, $type) {
-        //Check for query type first
-        // and then switch over and return
-        // correct type
+    public function runQuery($query) {
+        if ($this->connection->query($query)) {
+            echo 'Query executed successfully!';
+        }
+        else
+            echo 'Error on query: ' . $this->connection->error;
     }
 
     /*! This is a test method ! */
