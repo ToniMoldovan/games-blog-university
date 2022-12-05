@@ -1,5 +1,5 @@
 <?php
-include_once 'include/classes/DB.php';
+require_once 'include/classes/DB.php';
 ?>
 <div class="header">
     <h1>Welcome, friend!</h1>

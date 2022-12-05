@@ -1,6 +1,4 @@
 <?php
-require_once 'config.php';
-
 // Make a singleton DB for all queries and DB handling
 
 class DB {
@@ -32,6 +30,10 @@ class DB {
             self::$instance = new DB();
 
         return self::$instance;
+    }
+
+    public static function escape($string) {
+        return mysqli_real_escape_string(self::getInstance()->connection, $string);
     }
 
     /**
