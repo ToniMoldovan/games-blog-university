@@ -3,7 +3,31 @@
 </div>
 <div class="main-container">
     <div class="container">
-        <form>
+        <?php /*Error messages START*/
+
+        if (isset($_SESSION['login_email_error'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['login_email_error']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            unset($_SESSION['login_email_error']);
+        endif;
+
+        if (isset($_SESSION['login_pw_error'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['login_pw_error']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            unset($_SESSION['login_pw_error']);
+        endif;
+        /*Error messages END*/ ?>
+        <form method="POST" action="<?php echo ROOT_PATH.'include/functions/login.php';?>">
             <div class="row">
                 <!--Email-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">

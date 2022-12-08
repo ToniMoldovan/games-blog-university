@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+require_once 'include/classes/DB.php';
 ?>
 
 <!doctype html>
@@ -9,7 +10,7 @@ require_once 'config.php';
     <title>Gaming Blog</title>
 </head>
 
-<body>
+<body class="d-flex flex-column">
 
 <?php include 'include/components/navbar.php'; ?>
 

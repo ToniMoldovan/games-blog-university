@@ -3,23 +3,33 @@
 </div>
 <div class="main-container">
     <div class="container">
-    <?php
+
+    <?php /*Error messages START*/
+
         if (isset($_SESSION['register_message_error'])): ?>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['register_message_error']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
     <?php
         unset($_SESSION['register_message_error']); //Clears the register message error
         endif;
 
         if (isset($_SESSION['register_message_success'])): ?>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['register_message_success']; ?> You can login <a href="index.php?page=login" class="alert-link">here</a>.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <?php
             unset($_SESSION['register_message_success']); //Clears the register message success
         endif;
-    ?>
+
+    /*Error messages END*/ ?>
+
         <form method="POST" action="<?php echo ROOT_PATH.'include/functions/create_new_account.php';?>">
             <div class="row">
                 <!--Email-->
