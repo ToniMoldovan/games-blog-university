@@ -23,7 +23,20 @@
         </div>
         <?php
         unset($_SESSION['logout_success']); //Clears the register message success
-    endif; ?>
+    endif;
+
+    if (isset($_SESSION['post_no_exist'])): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php echo $_SESSION['post_no_exist']; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+        unset($_SESSION['post_no_exist']); //Clears the register message success
+    endif;
+
+    ?>
 
     <div id="blog-articles-container" class="container-fluid">
         <h2 class="page-heading">Latest blogs</h2>
