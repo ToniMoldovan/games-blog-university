@@ -16,6 +16,17 @@
             unset($_SESSION['login_email_error']);
         endif;
 
+        if (isset($_SESSION['not_logged'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['not_logged']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            unset($_SESSION['not_logged']);
+        endif;
+
         if (isset($_SESSION['login_pw_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['login_pw_error']; ?>
