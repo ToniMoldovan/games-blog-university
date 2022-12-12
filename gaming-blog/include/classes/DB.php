@@ -32,14 +32,15 @@ class DB {
         return self::$instance;
     }
 
+    public function prepareStatement($query)
+    {
+        return $this->connection->prepare($query);
+    }
+
     public static function escape($string) {
         return mysqli_real_escape_string(self::getInstance()->connection, $string);
     }
 
-    /**
-     * @param $query
-     * @param $type | SELECT, INSERT, UPDATE, DELETE
-     */
     public function runQuery($query, $type) {
         switch ($type) {
             case 'SELECT':

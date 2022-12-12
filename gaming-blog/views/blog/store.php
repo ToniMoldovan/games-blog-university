@@ -1,5 +1,4 @@
 <?php
-
 ?>
 
 <div class="header">
@@ -8,7 +7,9 @@
 <div class="main-container">
     <div class="container">
 
-        <?php /*Error messages START*/
+        <!--#region SESSION_MESSAGES-->
+
+        <?php
         //TODO: config alert messages
         if (isset($_SESSION['register_message_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -19,6 +20,39 @@
             </div>
             <?php
             unset($_SESSION['register_message_error']); //Clears the register message error
+        endif;
+
+        if (isset($_SESSION['post_timeout'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['post_timeout']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            unset($_SESSION['post_timeout']); //Clears the register message error
+        endif;
+
+        if (isset($_SESSION['title_length_error_1'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['title_length_error_1']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            unset($_SESSION['title_length_error_1']); //Clears the register message error
+        endif;
+
+        if (isset($_SESSION['content_length_error_1'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['content_length_error_1']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            unset($_SESSION['content_length_error_1']); //Clears the register message error
         endif;
 
         if (isset($_SESSION['post_create_success'])): ?>
@@ -34,6 +68,8 @@
 
         /*Error messages END*/ ?>
 
+        <!--#endregion SESSION_MESSAGES-->
+
         <form method="POST" action="<?php echo ROOT_PATH.'include/functions/create_new_post.php';?>">
             <div class="row">
                 <!--Title-->
@@ -47,7 +83,7 @@
                 <div class="col-12 mb-3">
                     <textarea id="editor1" name="content" class="form-control" minlength="60" rows="4" placeholder="Content" content=""></textarea>
                     <script>
-                        CKEDITOR.replace( 'editor1' );
+                        CKEDITOR.replace('editor1');
                     </script>
                 </div>
             </div>

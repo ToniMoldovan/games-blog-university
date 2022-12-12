@@ -29,7 +29,7 @@ class Post {
         //post[0]['title']
 
         if (count($result) != 1) {
-            $_SESSION['post_no_exist'] = 'This post ID ['.$post_id.'] doesn\'t exist. Please try again.';
+            $_SESSION['post_no_exist'] = 'This post ID <strong>['.$post_id.']</strong> doesn\'t exist. Please try again.';
             header("location:" . ROOT_PATH . 'index.php?page=home');
             return false;
         }
@@ -39,18 +39,20 @@ class Post {
 
     public function store() {
         $timestamp = date("Y-m-d H:i:s");
-        $query = sprintf(
-            "INSERT INTO posts (user_id, title, content, image, created_at)
-                    VALUES ('%d', '%s', '%s', '%s', '%s');",
-            DB::escape($this->uid),
-            DB::escape($this->title),
-            DB::escape($this->content),
-            DB::escape($this->img),
-            DB::escape($timestamp));
 
-        DB::getInstance()->runQuery($query, 'INSERT');
-        $_SESSION['post_create_success'] = 'Post created successfully!';
-        header("location:" . ROOT_PATH . 'index.php?page=create_post');
+        $query = "INSERT INTO posts (user_id, title, content, image, created_at) VALUES (?,?,?,?,?);";
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('issss', $this->uid, $this->title, $this->content, $this->img, $timestamp);
+
+        if ($stmt->execute())
+        {
+            $_SESSION['post_create_success'] = 'Post created successfully! You can post again after <strong>10 seconds.</strong>';
+            header("location:" . ROOT_PATH . 'index.php?page=create_post');
+        }
+        else
+        {
+            echo 'err preapred statements: ' . print_r($stmt->error_list, 1);
+        }
     }
 
     /*Getters*/
