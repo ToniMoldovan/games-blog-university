@@ -20,16 +20,22 @@ class User
 
     public static function getUserByEmail($email)
     {
-        $query = sprintf(
-            "SELECT * FROM users WHERE email='%s';",
-            DB::escape($email));
+        $query = "SELECT * FROM users WHERE email = ?";
+        $result = null;
 
-        $result = DB::getInstance()->runQuery($query, "SELECT");
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('s', $email);
 
-        if (count($result) != 1) {
-            $_SESSION['login_email_error'] = 'This email ['.$email.'] doesn\'t exist. Please try again.';
-            header("location:" . ROOT_PATH . 'index.php?page=login');
-            return false;
+        if ($stmt->execute())
+        {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) != 1) {
+                $_SESSION['login_email_error'] = 'This email ['.$email.'] doesn\'t exist. Please try again.';
+                header("location:" . ROOT_PATH . 'index.php?page=login');
+                return false;
+            }
         }
 
         return $result;
@@ -42,12 +48,20 @@ class User
 
     public function emailExists($email)
     {
-        $query = sprintf("SELECT * FROM users WHERE email='%s'", DB::escape($email));
-        $result = DB::getInstance()->runQuery($query, "SELECT");
 
-        if (count($result) < 1) {
-            //email doesn't exist yet
-            return false;
+        $query = "SELECT * FROM users WHERE email = ?";
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('s', $email);
+
+        if ($stmt->execute()) {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) < 1) {
+                //email doesn't exist yet
+                return false;
+            }
         }
 
         return true;
@@ -55,12 +69,19 @@ class User
 
     public function nameExists($name)
     {
-        $query = sprintf("SELECT * FROM users WHERE name='%s'", DB::escape($name));
-        $result = DB::getInstance()->runQuery($query, "SELECT");
+        $query = "SELECT * FROM users WHERE name = ?";
 
-        if (count($result) < 1) {
-            //name doesn't exist yet
-            return false;
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('s', $name);
+
+        if ($stmt->execute()) {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) < 1) {
+                //name doesn't exist yet
+                return false;
+            }
         }
 
         return true;
@@ -68,13 +89,10 @@ class User
 
     public function store()
     {
-        $query = sprintf(
-            "INSERT INTO users (email, name, password, gender)
-                    VALUES ('%s', '%s', '%s', '%s');",
-            DB::escape($this->email),
-            DB::escape($this->name),
-            DB::escape($this->password),
-            DB::escape($this->gender));
+        $query = "INSERT INTO users (email, name, password, gender) VALUES (?, ?, ?, ?);";
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('ssss', $this->email, $this->name, $this->password, $this->gender);
 
         if ($this->emailExists($this->email)) {
             //Email already exists
@@ -87,11 +105,15 @@ class User
             $_SESSION['register_message_error'] = 'This name already exists! Please choose another one.';
             header("location:" . ROOT_PATH . 'index.php?page=register');
         } else {
-            DB::getInstance()->runQuery($query, 'INSERT');
-            $_SESSION['register_message_success'] = 'Account created successfully!';
-            header("location:" . ROOT_PATH . 'index.php?page=register');
+            if ($stmt->execute())
+            {
+                $_SESSION['register_message_success'] = 'Account created successfully!';
+                header("location:" . ROOT_PATH . 'index.php?page=register');
+            }
+            else{
+                echo 'err preapred statements: ' . print_r($stmt->error_list, 1);
+            }
         }
-
     }
 
 }

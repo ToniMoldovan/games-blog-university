@@ -59,7 +59,7 @@ class Post
             $_SESSION['post_create_success'] = 'Post created successfully! You can post again after <strong>10 seconds.</strong>';
             header("location:" . ROOT_PATH . 'index.php?page=create_post');
         } else {
-            echo 'err preapred statements: ' . print_r($stmt->error_list, 1);
+
         }
     }
 

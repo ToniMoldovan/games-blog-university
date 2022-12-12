@@ -1,7 +1,8 @@
 <?php
 // Make a singleton DB for all queries and DB handling
 
-class DB {
+class DB
+{
     private static $instance = null;
 
     private $server = SERVER_IP;
@@ -11,7 +12,8 @@ class DB {
 
     private $connection;
 
-    private function __construct() {
+    private function __construct()
+    {
         //Here goes DB connection etc
         $this->connection = new \mysqli($this->server, $this->user, $this->password, $this->database);
 
@@ -23,9 +25,12 @@ class DB {
     }
 
     //Prevent cloning
-    private function __clone() { }
+    private function __clone()
+    {
+    }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (self::$instance == null)
             self::$instance = new DB();
 
@@ -37,27 +42,29 @@ class DB {
         return $this->connection->prepare($query);
     }
 
-    public static function escape($string) {
+    /* Not using this method anymore */
+    public static function escape($string)
+    {
         return mysqli_real_escape_string(self::getInstance()->connection, $string);
     }
 
-    public function runQuery($query, $type) {
+    /* Not using this method anymore */
+    public function runQuery($query, $type)
+    {
         switch ($type) {
             case 'SELECT':
                 if ($this->connection->query($query)) {
                     //echo 'Query executed successfully!';
                     $result = $this->connection->query($query);
                     return $result->fetch_all(MYSQLI_ASSOC);
-                }
-                else
+                } else
                     echo 'Error on query: ' . $this->connection->error;
                 break;
 
             case 'INSERT':
                 if ($this->connection->query($query)) {
                     echo 'Query executed successfully!';
-                }
-                else
+                } else
                     echo 'Error on query: ' . $this->connection->error;
                 break;
 
@@ -67,7 +74,8 @@ class DB {
     }
 
     /*! This is a test method ! */
-    public function showTables() {
+    public function showTables()
+    {
         $result = $this->connection->query("SELECT * FROM test");
         $result = $result->fetch_all(MYSQLI_ASSOC);
 
