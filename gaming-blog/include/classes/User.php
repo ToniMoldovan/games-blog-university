@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/DB.php';
+require_once 'DB.php';
 
 class User
 {
@@ -41,9 +41,17 @@ class User
         return $result;
     }
 
-    public function selectAll()
+    public static function selectAll()
     {
-        $query = "SELECT * FROM '" . $this->table . "'";
+        $query = "SELECT id FROM users";
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
     }
 
     public function emailExists($email)
