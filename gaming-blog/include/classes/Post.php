@@ -2,7 +2,8 @@
 
 require_once 'DB.php';
 
-class Post {
+class Post
+{
     public $table = 'posts';
 
     private $uid;
@@ -10,47 +11,54 @@ class Post {
     private $content;
     private $img;
 
-    function __construct($title, $content, $img_url, $user_id) {
+    function __construct($title, $content, $img_url, $user_id)
+    {
         $this->title = $title;
         $this->content = $content;
         $this->img = $img_url;
         $this->uid = $user_id;
     }
 
-    public function showAll() {
-        $query = "SELECT * FROM '".$this->table."'";
+    public function showAll()
+    {
+        $query = "SELECT * FROM '" . $this->table . "'";
 
     }
 
-    public static function postExists($post_id) {
-        $query = sprintf("SELECT * FROM posts WHERE id='%d' ", $post_id);
+    public static function postExists($post_id)
+    {
+        $query = "SELECT * FROM posts WHERE id = ?";
+        $result = null;
 
-        $result = DB::getInstance()->runQuery($query, "SELECT");
-        //post[0]['title']
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('i', $post_id);
 
-        if (count($result) != 1) {
-            $_SESSION['post_no_exist'] = 'This post ID <strong>['.$post_id.']</strong> doesn\'t exist. Please try again.';
-            header("location:" . ROOT_PATH . 'index.php?page=home');
-            return false;
+        if ($stmt->execute()) {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) != 1) {
+                $_SESSION['post_no_exist'] = 'This post ID <strong>[' . $post_id . ']</strong> doesn\'t exist. Please try again.';
+                header("location:" . ROOT_PATH . 'index.php?page=home');
+                return false;
+            }
         }
 
         return $result;
     }
 
-    public function store() {
+    public function store()
+    {
         $timestamp = date("Y-m-d H:i:s");
 
         $query = "INSERT INTO posts (user_id, title, content, image, created_at) VALUES (?,?,?,?,?);";
         $stmt = DB::getInstance()->prepareStatement($query);
         $stmt->bind_param('issss', $this->uid, $this->title, $this->content, $this->img, $timestamp);
 
-        if ($stmt->execute())
-        {
+        if ($stmt->execute()) {
             $_SESSION['post_create_success'] = 'Post created successfully! You can post again after <strong>10 seconds.</strong>';
             header("location:" . ROOT_PATH . 'index.php?page=create_post');
-        }
-        else
-        {
+        } else {
             echo 'err preapred statements: ' . print_r($stmt->error_list, 1);
         }
     }
@@ -106,7 +114,6 @@ class Post {
     {
         $this->img = $img;
     }
-
 
 
 }
