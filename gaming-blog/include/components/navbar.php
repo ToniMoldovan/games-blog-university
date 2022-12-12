@@ -41,6 +41,13 @@
             <li class="nav-item">
                 <a class="nav-link hover-link" href="index.php?page=contact">Contact</a>
             </li>
+
+            <li class="nav-item d-lg-block d-md-block d-none" id="accounts-holder">
+                <div class="blob green"></div>
+                <p class="nav-link" id="navbar-registered-acc">Accounts: <?php echo $usersCount; ?></p>
+            </li>
         </ul>
+
+
     </div>
 </nav>

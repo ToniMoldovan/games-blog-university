@@ -2,6 +2,10 @@
 require_once 'config.php';
 require_once 'include/classes/DB.php';
 require_once 'include/classes/Post.php';
+require_once 'include/classes/User.php';
+
+$usersCount = count(User::selectAll());
+
 ?>
 
 <!doctype html>
