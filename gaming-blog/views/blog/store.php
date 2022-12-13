@@ -10,7 +10,6 @@
         <!--#region SESSION_MESSAGES-->
 
         <?php
-        //TODO: config alert messages
         if (isset($_SESSION['register_message_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['register_message_error']; ?>
@@ -74,14 +73,25 @@
             <div class="row">
                 <!--Title-->
                 <div class="col-12 mb-3">
-                    <input name="title" type="text" class="form-control" minlength="6" maxlength="60" placeholder="Title">
+                    <input required name="title" type="text" class="form-control" minlength="6" maxlength="60" placeholder="Title">
+                </div>
+            </div>
+
+            <!--Game type-->
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <select required name="game_type" id="game_type" class="form-control">
+                        <option value="shooter" selected>Shooter</option>
+                        <option value="mmorpg">MMORPG</option>
+                        <option value="moba">MOBA</option>
+                    </select>
                 </div>
             </div>
 
             <div class="row">
                 <!--Content-->
                 <div class="col-12 mb-3">
-                    <textarea id="editor1" name="content" class="form-control" minlength="60" rows="4" placeholder="Content" content=""></textarea>
+                    <textarea required id="editor1" name="content" class="form-control" minlength="60" rows="4" placeholder="Content" content=""></textarea>
                     <script>
                         CKEDITOR.replace('editor1');
                     </script>

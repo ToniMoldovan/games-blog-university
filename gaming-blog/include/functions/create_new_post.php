@@ -34,10 +34,4 @@ if (isset($_POST['submit'])) {
         $_SESSION['post_timeout'] = "You can't post now. Wait a few more seconds!<br>Your last post was at <strong>[".$_COOKIE['create_post_timeout']."]</strong>";
         header('Location:' . ROOT_PATH . 'index.php?page=create_post');
     }
-
-
-
-        //TODO: check if user is logged first.
-
-
 }

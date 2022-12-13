@@ -34,24 +34,24 @@
             <div class="row">
                 <!--Email-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
-                    <input name="email" type="email" class="form-control" placeholder="Email">
+                    <input required name="email" type="email" class="form-control" placeholder="Email">
                 </div>
 
                 <!--Password-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
-                    <input name="password" type="password" class="form-control" placeholder="Password">
+                    <input required name="password" type="password" class="form-control" placeholder="Password">
                 </div>
             </div>
 
             <div class="row">
                 <!--Name-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
-                    <input name="name" type="text" class="form-control" placeholder="Your nickname (how your friends call you)">
+                    <input required name="name" type="text" class="form-control" placeholder="Your nickname (how your friends call you)">
                 </div>
 
                 <!--Gender-->
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
-                    <select name="gender" id="gender" class="form-control">
+                    <select required name="gender" id="gender" class="form-control">
                         <option value="male" selected>Male</option>
                         <option value="female">Female</option>
                         <option value="empty">Not specified</option>
