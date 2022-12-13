@@ -235,6 +235,14 @@ button.see-more-btn:hover {
 
 /*#endregion Homepage Section*/
 
+
+/*#region Individual Post*/
+#right-column-article p img {
+    max-width: 100% !important;
+    max-height: max-content !important;
+}
+/*#endregion Individual Post*/
+
 /*#region Media Queries*/
 
 /*#region Mobile*/
@@ -258,6 +266,11 @@ button.see-more-btn:hover {
 
     .article-card {
         width: 100%;
+    }
+
+    #right-column-article p img {
+        width: 100% !important;
+        height: auto !important;
     }
 }
 
