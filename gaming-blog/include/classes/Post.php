@@ -8,12 +8,14 @@ class Post
 
     private $uid;
     private $title;
+    private $gameType;
     private $content;
     private $img;
 
-    function __construct($title, $content, $img_url, $user_id)
+    function __construct($title, $game_type, $content, $img_url, $user_id)
     {
         $this->title = $title;
+        $this->gameType = $game_type;
         $this->content = $content;
         $this->img = $img_url;
         $this->uid = $user_id;
@@ -51,9 +53,9 @@ class Post
     {
         $timestamp = date("Y-m-d H:i:s");
 
-        $query = "INSERT INTO posts (user_id, title, content, image, created_at) VALUES (?,?,?,?,?);";
+        $query = "INSERT INTO posts (user_id, title, game_type, content, image, created_at) VALUES (?,?,?,?,?,?);";
         $stmt = DB::getInstance()->prepareStatement($query);
-        $stmt->bind_param('issss', $this->uid, $this->title, $this->content, $this->img, $timestamp);
+        $stmt->bind_param('isssss', $this->uid, $this->title, $this->gameType, $this->content, $this->img, $timestamp);
 
         if ($stmt->execute()) {
             $_SESSION['post_create_success'] = 'Post created successfully! You can post again after <strong>10 seconds.</strong>';

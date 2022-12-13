@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
         // User CAN POST
         $title = $_POST['title'];
         $content = $_POST['content'];
+        $game_type = $_POST['game_type'];
         $img_default = ROOT_PATH . 'assets/img/blog_no_image.jpg';
 
         if (strlen($title) < 6) {
@@ -23,7 +24,7 @@ if (isset($_POST['submit'])) {
             echo '</pre>';
             die;*/
 
-            $newPost = new Post($title, $content, $img_default, $_SESSION['user_id']);
+            $newPost = new Post($title, $game_type, $content, $img_default, $_SESSION['user_id']);
             $newPost->store();
 
             setcookie('create_post_timeout', date('H:i:s'), time() + (10), '/');
