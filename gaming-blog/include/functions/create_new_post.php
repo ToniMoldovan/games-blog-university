@@ -8,7 +8,22 @@ if (isset($_POST['submit'])) {
         $title = $_POST['title'];
         $content = $_POST['content'];
         $game_type = $_POST['game_type'];
-        $img_default = ROOT_PATH . 'assets/img/blog_no_image.jpg';
+        $img_default = "";
+
+        switch ($game_type) {
+            case 'moba':
+                $img_default = ROOT_PATH . 'assets/img/blog/post_categories/moba.jpg';
+                break;
+            case 'mmorpg':
+                $img_default = ROOT_PATH . 'assets/img/blog/post_categories/mmorpg.jpg';
+                break;
+            case 'shooter':
+                $img_default = ROOT_PATH . 'assets/img/blog/post_categories/shooter.jpg';
+                break;
+            default:
+                $img_default = ROOT_PATH . 'assets/img/blog_no_image.jpg';
+                break;
+        }
 
         if (strlen($title) < 6) {
             $_SESSION['title_length_error_1'] = "Title can't be less than <strong>6 characters.</strong>";
@@ -19,11 +34,6 @@ if (isset($_POST['submit'])) {
             header('Location:' . ROOT_PATH . 'index.php?page=create_post');
         }
         else {
-            /*echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
-            die;*/
-
             $newPost = new Post($title, $game_type, $content, $img_default, $_SESSION['user_id']);
             $newPost->store();
 
