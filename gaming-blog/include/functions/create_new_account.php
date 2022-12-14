@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     //echo $_POST['email'] . ' ' . $_POST['name'] . ' ' . $_POST['password'] . ' ' . $_POST['gender'];
     //Validating data
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $name = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING), ' ');
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $gender = $_POST['gender'];
 
