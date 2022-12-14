@@ -184,6 +184,7 @@ body, * {
     border-radius: 0 !important;
     width: 80%;
     min-height: 330px !important;
+    box-shadow: 6px 9px 11px -7px rgb(0 0 0 / 66%);
 }
 
 .article-card .card-body {
@@ -246,6 +247,24 @@ button.see-more-btn:hover {
     max-width: 100% !important;
     max-height: max-content !important;
 }
+
+div#author-container {
+    padding: 20px 15px;
+    background-color: rgb(191 191 191 / 13%);
+    border: 1px solid rgb(128 128 128 / 11%);
+    box-shadow: 6px 9px 11px -7px rgb(0 0 0 / 66%);
+}
+
+div#post-container {
+    padding: 20px 15px;
+    margin-left: 44px;
+    background-color: rgb(191 191 191 / 10%);
+}
+
+div#post-container p {
+    font-size: 18px;
+    line-height: 30px;
+}
 /*#endregion Individual Post*/
 
 /*#region Media Queries*/
@@ -276,6 +295,11 @@ button.see-more-btn:hover {
     #right-column-article p img {
         width: 100% !important;
         height: auto !important;
+    }
+
+    div#post-container {
+        margin-top: 54px;
+        margin-left: 0;
     }
 }
 
