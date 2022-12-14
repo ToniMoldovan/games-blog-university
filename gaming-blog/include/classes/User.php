@@ -18,6 +18,29 @@ class User
         $this->gender = $gender;
     }
 
+    public static function getUserByID($id)
+    {
+        $query = "SELECT * FROM users WHERE id = ?";
+        $result = null;
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('i', $id);
+
+        if ($stmt->execute())
+        {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) != 1) {
+                $_SESSION['login_email_error'] = 'This user ID ['.$id.'] doesn\'t exist. Please try again.';
+                header("location:" . ROOT_PATH . 'index.php?page=login');
+                return false;
+            }
+        }
+
+        return $result;
+    }
+
     public static function getUserByEmail($email)
     {
         $query = "SELECT * FROM users WHERE email = ?";

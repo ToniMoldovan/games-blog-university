@@ -24,7 +24,34 @@ class Post
     public function showAll()
     {
         $query = "SELECT * FROM '" . $this->table . "'";
+    }
 
+    /**
+     * @param $ascending bool
+     * @return array|null|boolean
+     */
+    public static function getAllPosts($ascending)
+    {
+        $result = null;
+
+        if ($ascending === false)
+            $query = "SELECT * FROM posts ORDER BY created_at DESC;";
+        else
+            $query = "SELECT * FROM posts ORDER BY created_at ASC;";
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+
+        if ($stmt->execute())
+        {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) < 1) {
+                return false;
+            }
+        }
+
+        return $result;
     }
 
     public static function postExists($post_id)
