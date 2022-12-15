@@ -57,6 +57,15 @@ switch ($page){
         }
         break;
 
+    case 'my_account':
+        if (isLogged()) {
+            include 'views/auth/my_account.php';
+        }
+        else {
+            header("location:" . ROOT_PATH . 'index.php?page=home');
+        }
+        break;
+
     case 'post':
         //echo $post;
         if ($post < 1) {
