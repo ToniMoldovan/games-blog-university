@@ -92,6 +92,10 @@
                                         $oldDate = new DateTime($posts[$i]['created_at']);
                                         $newDate = new DateTime(date("Y-m-d H:i:s"));
                                         $diff = $newDate->diff($oldDate);
+                                        /*echo '<pre>';
+                                        print_r($diff);
+                                        echo '</pre>';*/
+
 
                                         if ($diff->i < 1) {
                                             echo $diff->s . ' seconds ';
@@ -103,7 +107,7 @@
                                             if ($diff->h == 1) echo $diff->h . ' hour ';
                                             else echo $diff->h . ' hours ';
                                         }
-                                        elseif ($diff->d > 1) {
+                                        elseif ($diff->d >= 1) {
                                             if ($diff->d == 1) echo $diff->d . ' day ';
                                             else echo $diff->d . ' days ';
                                         }
