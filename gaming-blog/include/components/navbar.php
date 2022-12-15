@@ -30,7 +30,7 @@
                         <img src="<?php echo ROOT_PATH . 'assets/img/svg/profile-svgrepo-com.svg' ?>" style="margin-right: 10px;width: 22px;" alt="profile_icon"><?php echo $_SESSION['user_name']; ?>
                     </a>
                     <div class="dropdown-menu" style="border-radius: 0;" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="index.php?page=account">My Account</a>
+                        <a class="dropdown-item" href="index.php?page=my_account">My Account</a>
                         <a class="dropdown-item" href="index.php?page=create_post">Create Post</a>
                         <a class="dropdown-item" href="index.php?page=my_posts">My Posts</a>
                         <div class="dropdown-divider"></div>

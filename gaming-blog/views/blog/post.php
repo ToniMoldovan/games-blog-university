@@ -20,6 +20,21 @@ $at = '\a\t';
                     <p><img src="<?php echo ROOT_PATH . 'assets/img/svg/calendar-svgrepo-com.svg'; ?>" alt="calendar-icon-svg" width="16px">
                         <?php echo date_format($postedDate, "[Y] M. j ".$at." g:i A"); ?>
                     </p>
+                    <hr>
+                    <p>
+                        <img src="<?php echo ROOT_PATH . 'assets/img/svg/gender-svgrepo-com.svg'; ?>" alt="email-icon-svg" width="24px">
+                        <strong>Gender:</strong>
+                        <img src="
+                        <?php
+                        if ($user[0]['gender'] == 'male') echo ROOT_PATH . 'assets/img/svg/user-male-svgrepo-com.svg';
+                        elseif ($user[0]['gender'] == 'female') echo ROOT_PATH . 'assets/img/svg/woman-user-svgrepo-com.svg';
+                        else echo ROOT_PATH . 'assets/img/svg/camel-svgrepo-com.svg';
+                        ?>" alt="profile-icon-svg" style="margin-left: 2%" width="42px">
+                    </p>
+                    <hr>
+                    <span class="user_rank">
+                        <img src="<?php echo ROOT_PATH . 'assets/img/blog/ranks/'.$user[0]['rank'].'.png'; ?>" alt="user-rank">
+                    </span>
                 </div>
             </div>
 

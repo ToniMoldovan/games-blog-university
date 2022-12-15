@@ -7,6 +7,7 @@ class User
     private $name;
     private $password;
     private $gender;
+    private $rank;
 
     public $table = 'users';
 
@@ -142,7 +143,7 @@ class User
                 header("location:" . ROOT_PATH . 'index.php?page=register');
             }
             else{
-                echo 'err preapred statements: ' . print_r($stmt->error_list, 1);
+                echo 'err prepared statements: ' . print_r($stmt->error_list, 1);
             }
         }
     }
