@@ -1,60 +1,58 @@
-<?php
-include '../config.php';
-?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page not found</title>
-</head>
-<body>
 <style>
-    *{
-        transition: all 0.6s;
+    .page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
     }
 
-    html {
-        height: 100%;
+    .page_404  img{ width:100%;}
+
+    .four_zero_four_bg{
+
+        background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+        min-height: calc(100vh - 72px - 170px);
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
-    body{
-        font-family: 'Lato', sans-serif;
-        color: #888;
-        margin: 0;
+
+    .four_zero_four_bg h1{
+        font-size:80px;
     }
 
-    #main{
-        display: table;
-        width: 100%;
-        height: 100vh;
-        text-align: center;
+    .four_zero_four_bg h3{
+        font-size:80px;
     }
 
-    .fof{
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    .fof h1{
-        font-size: 50px;
-        display: inline-block;
-        padding-right: 12px;
-        animation: type .5s alternate infinite;
-    }
-
-    @keyframes type{
-        from{box-shadow: inset -3px 0px 0px #888;}
-        to{box-shadow: inset -3px 0px 0px transparent;}
-    }
+    .link_404{
+        color: #fff!important;
+        padding: 10px 20px;
+        background: #39ac31;
+        margin: 20px 0;
+        display: inline-block;}
+    .contant_box_404{ margin-top:-50px;}
 </style>
-<div id="main">
-    <div class="fof">
-        <h1>Error 404</h1>
-        <a href="<?php echo ROOT_PATH.'index.php' ?>">Go home</a>
-    </div>
+<div id="main-container">
+    <section class="page_404">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="col-sm-10 col-sm-offset-1  text-center">
+                        <div class="four_zero_four_bg">
+                            <h1 class="text-center ">404</h1>
+
+
+                        </div>
+
+                        <div class="contant_box_404">
+                            <h3 class="h2">
+                                Look like you're lost
+                            </h3>
+
+                            <p>the page you are looking for not avaible!</p>
+
+                            <a href="index.php?page=home" class="link_404">Go to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-</body>
-</html>

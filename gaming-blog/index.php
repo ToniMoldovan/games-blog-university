@@ -92,7 +92,7 @@ switch ($page){
         break;
 
     default:
-        echo '<h1>404 ERROR</h1>';
+        include 'views/404.php';
         break;
 }
 
