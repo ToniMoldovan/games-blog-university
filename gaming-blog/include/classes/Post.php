@@ -76,6 +76,50 @@ class Post
         return $result;
     }
 
+    public static function getPostsByCategory($cat)
+    {
+        $query = "SELECT * FROM posts WHERE game_type = ? ORDER BY created_at ASC;";
+        $result = null;
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('s', $cat);
+
+        if ($stmt->execute()) {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) < 1) {
+                $_SESSION['post_no_exist'] = "You have no posts.";
+                //header("location:" . ROOT_PATH . 'index.php?page=my_posts');
+                return false;
+            }
+        }
+
+        return $result;
+    }
+
+    public static function getPostsByUID($uid)
+    {
+        $query = "SELECT * FROM posts WHERE user_id = ?;";
+        $result = null;
+
+        $stmt = DB::getInstance()->prepareStatement($query);
+        $stmt->bind_param('i', $uid);
+
+        if ($stmt->execute()) {
+            $data = $stmt->get_result();
+            $result = $data->fetch_all(MYSQLI_ASSOC);
+
+            if (count($result) < 1) {
+                $_SESSION['post_no_exist'] = "You have no posts.";
+                //header("location:" . ROOT_PATH . 'index.php?page=my_posts');
+                return false;
+            }
+        }
+
+        return $result;
+    }
+
     public function store()
     {
         $timestamp = date("Y-m-d H:i:s");
