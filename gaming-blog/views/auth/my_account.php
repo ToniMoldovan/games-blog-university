@@ -39,8 +39,38 @@ $user = User::getUserByID($_SESSION['user_id']);
             </div>
 
             <!--Actual article-->
-            <div class="col-lg-8 col-md-8 col-12" id="right-column-article">
+            <div class="col-lg-8 col-md-8 col-12 mt-lg-0 mt-md-0 mt-5" id="right-column-article">
+                <div class="container">
+                    <h3 class="pb-3">Change your password</h3>
+                    <form method="POST" action="<?php echo ROOT_PATH.'include/functions/change_password.php';?>">
+                        <div class="row">
+                            <!--Old password-->
+                            <div class="col-12 mb-3">
+                                <input required name="old_password" type="password" class="form-control" placeholder="Old password">
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <!-- New password-->
+                            <div class="col-12 mb-3">
+                                <input required name="new_password" type="password" class="form-control" placeholder="New password">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!--Confirm new password-->
+                            <div class="col-12 mb-3">
+                                <input required name="confirm_new_password" type="password" class="form-control" placeholder="Confirm new password">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 ">
+                                <input id="submitBtn" type="submit" name="submit" value="Change password" class="btn w-100 mt-lg-4 mt-md-4 mt-2">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
