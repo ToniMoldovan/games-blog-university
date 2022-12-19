@@ -92,10 +92,6 @@
                                         $oldDate = new DateTime($posts[$i]['created_at']);
                                         $newDate = new DateTime(date("Y-m-d H:i:s"));
                                         $diff = $newDate->diff($oldDate);
-                                        /*echo '<pre>';
-                                        print_r($diff);
-                                        echo '</pre>';*/
-
 
                                         if ($diff->i < 1) {
                                             echo $diff->s . ' seconds ';
@@ -121,140 +117,252 @@
             </div>
         </div>
 
+        <!--#region SHOOTERS-->
         <div class="page-article-row">
-            <h4 class="articles-category-heading heading-underline d-inline-block">MMORPG</h4>
+            <h4 class="articles-category-heading heading-underline d-inline-block">SHOOTERS</h4>
             <button type="button" class="btn btn-primary see-more-btn">See more</button>
             <div class="row article-row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" width="200px" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago by Admin</small>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $posts = Post::getPostsByCategory('shooter');
+                $max = 3;
+                if (count($posts) < 3)
+                    $max = count($posts);
 
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" width="200px" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago by Admin</small>
-                        </div>
-                    </div>
-                </div>
+                for ($i = 0; $i < $max; $i++): ?>
+                    <?php
+                    $user = User::getUserByID($posts[$i]['user_id']);
+                    ?>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
+                            <a href="<?php echo 'index.php?page=post&post_id=' . $posts[$i]['id']; ?>">
+                                <img class="card-img-top" src="<?php echo $posts[$i]['image']; ?>" width="200px" alt="blog_no_image">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $posts[$i]['title']; ?></h5>
+                                <p class="card-text">
+                                    <?php
+                                    $string = strip_tags($posts[$i]['content']);
+                                    $wordCount = 0;
+                                    foreach (explode(' ', $string) as $word) {
+                                        if (strlen($word) > 5)
+                                        {
+                                            if ($wordCount > 11) break;
+                                            else {
+                                                echo $word . ' ';
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (strlen($word) < 8) {
+                                                if ($wordCount > 18) break;
+                                                else {
+                                                    echo $word . ' ';
+                                                }
+                                            }
+                                        }
+                                        $wordCount++;
 
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" width="200px" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago by Admin</small>
+                                    }
+                                    ?>
+                                    ...</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last edited<strong>
+                                        <?php
+                                        $oldDate = new DateTime($posts[$i]['created_at']);
+                                        $newDate = new DateTime(date("Y-m-d H:i:s"));
+                                        $diff = $newDate->diff($oldDate);
+
+                                        if ($diff->i < 1) {
+                                            echo $diff->s . ' seconds ';
+                                        }
+                                        elseif ($diff->h < 1) {
+                                            echo $diff->i . ' minutes ';
+                                        }
+                                        elseif ($diff->d < 1) {
+                                            if ($diff->h == 1) echo $diff->h . ' hour ';
+                                            else echo $diff->h . ' hours ';
+                                        }
+                                        elseif ($diff->d >= 1) {
+                                            if ($diff->d == 1) echo $diff->d . ' day ';
+                                            else echo $diff->d . ' days ';
+                                        }
+                                        ?>
+                                        ago</strong> by <strong><?php echo $user[0]['name']; ?></strong></small>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endfor;
+                ?>
             </div>
         </div>
 
+        <!--#endregion SHOOTERS-->
+
+        <!--#region MOBA-->
         <div class="page-article-row">
             <h4 class="articles-category-heading heading-underline d-inline-block">MOBA</h4>
             <button type="button" class="btn btn-primary see-more-btn">See more</button>
             <div class="row article-row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" width="200px" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $posts = Post::getPostsByCategory('moba');
 
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" width="200px" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
+                $max = 3;
+                if (count($posts) < 3)
+                    $max = count($posts);
 
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" width="200px" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                for ($i = 0; $i < $max; $i++): ?>
+                    <?php
+                    $user = User::getUserByID($posts[$i]['user_id']);
+                    ?>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
+                            <a href="<?php echo 'index.php?page=post&post_id=' . $posts[$i]['id']; ?>">
+                                <img class="card-img-top" src="<?php echo $posts[$i]['image']; ?>" width="200px" alt="blog_no_image">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $posts[$i]['title']; ?></h5>
+                                <p class="card-text">
+                                    <?php
+                                    $string = strip_tags($posts[$i]['content']);
+                                    $wordCount = 0;
+                                    foreach (explode(' ', $string) as $word) {
+                                        if (strlen($word) > 5)
+                                        {
+                                            if ($wordCount > 11) break;
+                                            else {
+                                                echo $word . ' ';
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (strlen($word) < 8) {
+                                                if ($wordCount > 18) break;
+                                                else {
+                                                    echo $word . ' ';
+                                                }
+                                            }
+                                        }
+                                        $wordCount++;
+
+                                    }
+                                    ?>
+                                    ...</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last edited<strong>
+                                        <?php
+                                        $oldDate = new DateTime($posts[$i]['created_at']);
+                                        $newDate = new DateTime(date("Y-m-d H:i:s"));
+                                        $diff = $newDate->diff($oldDate);
+
+                                        if ($diff->i < 1) {
+                                            echo $diff->s . ' seconds ';
+                                        }
+                                        elseif ($diff->h < 1) {
+                                            echo $diff->i . ' minutes ';
+                                        }
+                                        elseif ($diff->d < 1) {
+                                            if ($diff->h == 1) echo $diff->h . ' hour ';
+                                            else echo $diff->h . ' hours ';
+                                        }
+                                        elseif ($diff->d >= 1) {
+                                            if ($diff->d == 1) echo $diff->d . ' day ';
+                                            else echo $diff->d . ' days ';
+                                        }
+                                        ?>
+                                        ago</strong> by <strong><?php echo $user[0]['name']; ?></strong></small>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endfor;
+                ?>
             </div>
         </div>
 
+        <!--#endregion MOBA-->
+
+        <!--#region MMORPG-->
         <div class="page-article-row">
-            <h4 class="articles-category-heading heading-underline d-inline-block">Shooters</h4>
+            <h4 class="articles-category-heading heading-underline d-inline-block">MMORPG</h4>
             <button type="button" class="btn btn-primary see-more-btn">See more</button>
-
             <div class="row article-row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" width="200px" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $posts = Post::getPostsByCategory('mmorpg');
 
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" width="200px" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
+                for ($i = 0; $i < 3; $i++): ?>
+                    <?php
+                    $user = User::getUserByID($posts[$i]['user_id']);
+                    ?>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
+                            <a href="<?php echo 'index.php?page=post&post_id=' . $posts[$i]['id']; ?>">
+                                <img class="card-img-top" src="<?php echo $posts[$i]['image']; ?>" width="200px" alt="blog_no_image">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $posts[$i]['title']; ?></h5>
+                                <p class="card-text">
+                                    <?php
+                                    $string = strip_tags($posts[$i]['content']);
+                                    $wordCount = 0;
+                                    foreach (explode(' ', $string) as $word) {
+                                        if (strlen($word) > 5)
+                                        {
+                                            if ($wordCount > 11) break;
+                                            else {
+                                                echo $word . ' ';
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (strlen($word) < 8) {
+                                                if ($wordCount > 18) break;
+                                                else {
+                                                    echo $word . ' ';
+                                                }
+                                            }
+                                        }
+                                        $wordCount++;
 
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card article-card mx-lg-2 mx-0 mb-lg-0 mb-md-0 mb-5">
-                        <img class="card-img-top" width="200px" src="<?php echo ROOT_PATH . 'assets/img/blog_no_image.jpg'; ?>" alt="blog_no_image">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                                    }
+                                    ?>
+                                    ...</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last edited<strong>
+                                        <?php
+                                        $oldDate = new DateTime($posts[$i]['created_at']);
+                                        $newDate = new DateTime(date("Y-m-d H:i:s"));
+                                        $diff = $newDate->diff($oldDate);
+
+                                        if ($diff->i < 1) {
+                                            echo $diff->s . ' seconds ';
+                                        }
+                                        elseif ($diff->h < 1) {
+                                            echo $diff->i . ' minutes ';
+                                        }
+                                        elseif ($diff->d < 1) {
+                                            if ($diff->h == 1) echo $diff->h . ' hour ';
+                                            else echo $diff->h . ' hours ';
+                                        }
+                                        elseif ($diff->d >= 1) {
+                                            if ($diff->d == 1) echo $diff->d . ' day ';
+                                            else echo $diff->d . ' days ';
+                                        }
+                                        ?>
+                                        ago</strong> by <strong><?php echo $user[0]['name']; ?></strong></small>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endfor;
+                ?>
             </div>
         </div>
+
+        <!--#endregion MMORPG-->
+
+
+
+
     </div>
 </div>
